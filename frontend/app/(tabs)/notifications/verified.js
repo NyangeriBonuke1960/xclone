@@ -1,12 +1,12 @@
 import { View, Text } from 'react-native'
 import React from 'react'
 
-const following = () => {
+const verified = () => {
   return (
     <View>
-      <Text>followings</Text>
+      <Text>verified</Text>
     </View>
   )
 }
 
-export default following
+export default verified

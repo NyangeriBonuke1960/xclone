@@ -1,12 +1,12 @@
 import { View, Text } from 'react-native'
 import React from 'react'
 
-const following = () => {
+const mentions = () => {
   return (
     <View>
-      <Text>followings</Text>
+      <Text>mentions</Text>
     </View>
   )
 }
 
-export default following
+export default mentions

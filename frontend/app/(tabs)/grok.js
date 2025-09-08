@@ -1,12 +1,12 @@
 import { View, Text } from 'react-native'
 import React from 'react'
 
-const following = () => {
+const grok = () => {
   return (
     <View>
-      <Text>followings</Text>
+      <Text>grok</Text>
     </View>
   )
 }
 
-export default following
+export default grok
