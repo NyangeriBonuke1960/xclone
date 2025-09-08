@@ -13,7 +13,8 @@ const TweetSchema = new mongoose.Schema({
         type: String
     },
     author: {
-        type: String,
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User',
         required: true
     },
     quotedTweet: {
@@ -21,6 +22,9 @@ const TweetSchema = new mongoose.Schema({
         ref: 'Tweet',
         default: null
     }
+},
+{
+    timestamps: true
 })
 
 const Tweet = mongoose.model('Tweet', TweetSchema);
