@@ -52,3 +52,6 @@ const UserMetaSchema = new mongoose.Schema({
 {
     timestamps: true
 })
+
+const UserMetaData = mongoose.model('UserMeta', UserMetaSchema);
+module.exports = UserMetaData
