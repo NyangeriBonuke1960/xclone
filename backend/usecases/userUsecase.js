@@ -3,26 +3,34 @@ const bcrypt = require('bcrypt');
 
 class UserUsecase{
     async createUser({username, email, password}){
-        if(!username || !email || !password){
-            return { error: 'All fields are required' };
+        try{
+            if(!username || !email || !password){
+                return { error: 'All fields are required' };
+            }
+
+            const userExists = await UserRepository.emailExists(email);
+            if(userExists === true){
+                return { error: 'Email already in use' };
+            }
+
+            const salt = await bcrypt.genSalt(10);
+            const hashedPassword = await bcrypt.hash(password, salt);
+
+            const userData = {
+                username,
+                email,
+                password: hashedPassword
+            }
+
+            const newUser = await UserRepository.postUser(userData);
+
+            await UserRepository.createUserMetadata(newUser._id);
+
+            return newUser;
         }
-
-        const userExists = await UserRepository.emailExists(email);
-        if(userExists === true){
-            return { error: 'Email already in use' };
+        catch(error){
+            return { error: error.message }
         }
-
-        const salt = await bcrypt.genSalt(10);
-        const hashedPassword = await bcrypt.hash(password, salt);
-
-        const userData = {
-            username,
-            email,
-            password: hashedPassword
-        }
-
-        const newUser = await UserRepository.postUser(userData);
-        return newUser;
     }
 }
 

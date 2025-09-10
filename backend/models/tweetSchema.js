@@ -21,6 +21,11 @@ const TweetSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Tweet',
         default: null
+    },
+    replyTo: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Tweet',
+        default: null
     }
 },
 {

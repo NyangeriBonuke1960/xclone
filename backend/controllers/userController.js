@@ -4,6 +4,7 @@ class UserController{
     async createUser(req, res){
         try{
             const { username, email, password } = req.body; 
+            console.log(req.body);
             const result = await UserUsecase.createUser({ username, email, password});
             res.status(201).json(result);
         }

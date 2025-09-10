@@ -9,6 +9,6 @@ router.post('/tweet', upload.fields([
     { name: 'videoUrl', maxCount: 1 }
 ]), TweetController.postTweet);
 
-router.post('/login', UserController.createUser)
+router.post('/signup', UserController.createUser)
 
 module.exports = router;
