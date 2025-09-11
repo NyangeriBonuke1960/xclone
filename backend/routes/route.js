@@ -10,5 +10,6 @@ router.post('/tweet', upload.fields([
 ]), TweetController.postTweet);
 
 router.post('/signup', UserController.createUser)
+router.post('/like', TweetController.likeTweet)
 
 module.exports = router;

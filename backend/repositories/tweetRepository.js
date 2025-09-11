@@ -36,6 +36,27 @@ class TweetRepository {
             return { error: error.message };
         }
     }
+
+    async likeTweet(tweetId, userId){
+        try{
+           const tweetMetadata = await TweetMetadata.findOne({tweet: tweetId})
+           if(!tweetMetadata){
+                return { error: 'Tweet metadata not found' }
+           }
+           const alreadyLiked = tweetMetadata.likes.includes(userId)
+           if(alreadyLiked){
+                metadata.likes.pull(userId)
+           }
+           else{
+                metadata.likes.push(userId)
+           }
+           await metadata.save()
+           return metadata
+        }
+        catch(error){
+            return { error: error.message }
+        }
+    }
 }
 
 module.exports = new TweetRepository();

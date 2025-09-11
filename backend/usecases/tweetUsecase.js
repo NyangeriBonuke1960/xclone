@@ -32,7 +32,18 @@ class TweetUsecase {
         }
     }
 
-   
+   async likeTweet({tweetId, userId}){
+        try{
+            if(!tweetId || !userId){
+                return {error: 'tweet id or user id is required'}
+            }
+            const result = await TweetRepository.likeTweet(tweetId, userId)
+            return result
+        }
+        catch(error){
+            return { error: error.message }
+        }
+   }
 }
 
 module.exports = new TweetUsecase();

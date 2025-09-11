@@ -18,7 +18,22 @@ class TweetController {
         }
     }
 
- 
+    async likeTweet(rew, res){
+        try{
+            /**userId is the user liking the tweet */
+            /**tweetId is the id of the tweet being liked */
+            const { tweetId, userId } = req.body
+            const result = await TweetUsecase.likeTweet({tweetId, userId})
+            if(result.error){
+                return res.status(400).json({error: result.error})
+            }
+
+            return res.status(201).json(result)
+        }
+        catch(error){
+            res.status(500).json({error: error.message})
+        }
+    }
 }
 
 module.exports = new TweetController();
