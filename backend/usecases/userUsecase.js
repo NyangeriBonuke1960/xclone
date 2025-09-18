@@ -1,4 +1,5 @@
 const UserRepository = require('../repositories/userRepository');
+const User = require('../Entities/User');
 const bcrypt = require('bcrypt');
 
 class UserUsecase{
@@ -22,7 +23,9 @@ class UserUsecase{
                 password: hashedPassword
             }
 
-            const newUser = await UserRepository.postUser(userData);
+            const user = new User(userData);    
+
+            const newUser = await UserRepository.postUser(user);
 
             await UserRepository.createUserMetadata(newUser._id);
 
